@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(session({
     name: 'sessionid',
     secret: 'mysecret',
-    cookie: { sameSite: 'none',secure:true },
+    cookie: { sameSite:'strict', secure:false },
     resave: false,
     saveUninitialized: false
 }));
