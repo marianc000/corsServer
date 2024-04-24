@@ -17,7 +17,7 @@ function send(method = 'get') {
         }).catch(er => ({ error: er }))
         .then(o => {
             console.log(o);
-            tbody.insertAdjacentHTML('beforeend', `<p>${toRow(o)}</p>`);
+            tbody.insertAdjacentHTML('beforeend',  toRow(o) );
         });
 }
 
