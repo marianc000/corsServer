@@ -5,10 +5,12 @@ import bodyParser from 'body-parser';
 const app = express()
 const port = process.env.PORT || 3000;
 
+app.set('trust proxy', 1) // trust first proxy
+
 app.use(session({
     name: 'sessionid',
     secret: 'mysecret',
-    cookie: { sameSite:'strict', secure:false },
+    cookie: { sameSite:'none', secure:true },
     resave: false,
     saveUninitialized: false
 }));
