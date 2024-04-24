@@ -1,4 +1,4 @@
-const URL = 'data2/12345'
+const URL = 'data/321'
 function send(method = 'get') {
     const options = {
         method
