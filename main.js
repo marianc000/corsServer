@@ -10,7 +10,7 @@ app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'sessionid',
     secret: 'mysecret',
-    cookie: { sameSite:'none', secure:true },
+    cookie: { sameSite: 'none', secure: true },
     resave: false,
     saveUninitialized: false
 }));
@@ -20,11 +20,13 @@ app.use(bodyParser.json());
 
 app.all('/data/:id', (req, res) => {
     req.session.count = (req.session.count || 0) + 1;
-    res.send({method:req.method,
-        time:req.session.count,
-        sessionId:req.session.id,
+    res.set('Content-Security-Policy', "default-src 'self';");
+    res.send({
+        method: req.method,
+        time: req.session.count,
+        sessionId: req.session.id,
         // pathParam:req.params.id,
-        data:JSON.stringify(req.body)
+        data: JSON.stringify(req.body)
     });
 })
 
