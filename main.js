@@ -21,13 +21,15 @@ app.use(bodyParser.json());
 app.all('/data/:id', (req, res) => {
     req.session.count = (req.session.count || 0) + 1;
     res.set('Content-Security-Policy', "default-src 'self';");
-    res.send({
+    const r = {
         method: req.method,
         time: req.session.count,
         sessionId: req.session.id,
-        // pathParam:req.params.id,
-        data: JSON.stringify(req.body)
-    });
+        pathParam: req.params.id,
+    };
+    if (Object.keys(req.body).length)
+        r.data = JSON.stringify(req.body);
+    res.send(r);
 })
 
 app.listen(port, () => {
