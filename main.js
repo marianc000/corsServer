@@ -10,7 +10,7 @@ app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     name: 'sessionid',
     secret: 'mysecret',
-    cookie: { sameSite: 'none', secure: true },
+    cookie: { sameSite: 'none', secure: true,partitioned:true },
     resave: false,
     saveUninitialized: false
 }));
